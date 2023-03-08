@@ -7,9 +7,9 @@ warnings.filterwarnings("ignore")
 
 
 
-special_words = ['双十一', '双11']
-for word in special_words:
-	jieba.add_word(word)
+def do_not_split_words(special_words):
+	for word in special_words:
+		jieba.add_word(word)
 
 
 def tokenize(initial_title):
@@ -18,7 +18,9 @@ def tokenize(initial_title):
 	words = [x for x in words if x.strip() != ""]
 	return words
 
-def get_word_frequency(name_list):
+def get_word_frequency(name_list, special_words=None):
+	if special_words:
+		do_not_split_words(special_words)
 	all_words = []      # 所有标题的分词
 	for title in name_list:
 	    word_list = tokenize(title)

@@ -108,3 +108,14 @@ if __name__ == '__main__':
 	    cny_by_brand['md'] = cny_by_brand['销售额'] / cny_by_brand['msrp_amt']
 	    cny_by_brand.reset_index().to_excel(cny_result_file, sheet_name='brand_weekly', index=False)
 	    cny_result_file.close()
+
+
+	# # 关键词筛选，每个月份输出一份词汇的表
+	# # 标题分词词频统计
+	# save_file = pd.ExcelWriter("result/cny2023分词bymonth.xlsx")
+	# for month in [12,1,2]:
+	#     monthly_data = cny2023.query(f"month == {month}")
+	#     name_list = monthly_data['宝贝名称'].drop_duplicates().tolist()
+	#     word_freq_df = get_word_frequency(name_list)
+	#     word_freq_df.to_excel(save_file,sheet_name = f'cny23_{month}')
+	# save_file.close()
